@@ -46,7 +46,7 @@ int main()
 	int num;
 
 	while (1) {
-		cout << "Enter a valid number: " << endl;
+		cout << "Enter a valid number: herre " << endl;
 		cin >> num;
 
 		if (!cin.fail())
