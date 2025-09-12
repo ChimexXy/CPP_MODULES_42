@@ -3,11 +3,11 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = phonebook
 SRC = phonebook.cpp
-OBJ = $(OBJ:.cpp=.o)
+OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
-$(NAME) : $(OBJ) phonebook.hpp phonebook.h
+$(NAME) : $(OBJ) phonebook.hpp
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJ)
 
 clean:
