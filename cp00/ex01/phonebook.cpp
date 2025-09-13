@@ -159,18 +159,29 @@ void Phonebook::search_contact()
 
     for(int i = 0; i < count; i++)
         print_contacts(contacts[i], i);
+    int index;
     while(1)
     {
-        int index;
+        std::cout << "Entre The index of contact : ";
         std::cin >> index;
         if (index < 0 || index >= count)
         {
-            std::cout << "Invalid Index, Try Again" << endl;
+            std::cout << "Invalid Index, Try Again" << std::endl;
             std::cin.ignore();
+            continue;
         }
-        
-
+        else
+        {
+            std::cin.ignore();
+            break;
+        }
     }
+    Contact x_contact = contacts[index];
+    std::cout << "First Name : " << x_contact.get_first_name() << std::endl; 
+    std::cout << "Last Name : " << x_contact.get_last_name() << std::endl; 
+    std::cout << "Nick Name : " << x_contact.get_nick_name() << std::endl; 
+    std::cout << "Phone Number : " << x_contact.get_phone_number() << std::endl; 
+    std::cout << "Darkest Secret : " << x_contact.get_darkest_secret() << std::endl; 
 }
 
 int main()
