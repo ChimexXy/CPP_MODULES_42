@@ -1,45 +1,74 @@
 #include "phonebook.hpp"
 
-void add(phonebook x)
-{
-    std::cout << "enter the first.name" << std::endl;
-    getline(std::cin, x.first_name);
-    std::cout << x.first_name << std::endl;
+Phonebook::Phonebook() : ind(0), count(0) {} 
 
-    std::cout << "enter the last name" << std::endl;
-    getline(std::cin, x.last_name);
-    std::cout << x.last_name << std::endl;
-
-    std::cout << "enter the nick name" << std::endl;
-    getline(std::cin, x.nick_name);
-    std::cout << x.nick_name << std::endl;
-
-    std::cout << "enter the phone number" << std::endl;
-    getline(std::cin, x.phone_number);
-    std::cout << x.phone_number << std::endl;
-
-    std::cout << "enter your darkest_secret" << std::endl;
-    getline(std::cin, x.darkest_secret);
-    std::cout << x.darkest_secret << std::endl;
+bool is_all_spaces(const std::string &str) {
+    for (size_t i = 0; i < str.size(); i++) {
+        if (!std::isspace(str[i]))
+            return false;
+    }
+    return true;
 }
+
+void Phonebook::add_new_contact()
+{
+    Contact x_contact;
+    std::string line;
+
+    std::cout << "enter the first name : ";
+    getline(std::cin, line);
+    if (line.empty() || is_all_spaces(line))
+        return ;
+    x_contact.set_first_name(line);
+
+    std::cout << "enter the last name : ";
+    getline(std::cin, line);
+    if (line.empty() || is_all_spaces(line))
+        return ;
+    x_contact.set_last_name(line);
+
+    std::cout << "enter the nick name : ";
+    getline(std::cin, line);
+    if (line.empty() || is_all_spaces(line))
+        return ;
+    x_contact.set_nick_name(line);
+
+    std::cout << "enter the phone number : ";
+    getline(std::cin, line);
+    if (line.empty() || is_all_spaces(line))
+        return ;
+    x_contact.set_phone_number(line);
+
+    std::cout << "enter your darkest_secret : ";
+    getline(std::cin, line);
+    if (line.empty() || is_all_spaces(line))
+        return ;
+    x_contact.set_darkest_secret(line);
+
+    contacts[ind] = x_contact;
+    ind = (ind + 1) % 8;
+    if (count < 8)
+        count++;
+    std::cout << ind << std::endl;
+}
+
 
 int main()
 {
-    phonebook x;
-    x.count = 0;
+    Phonebook phonebook;
+    std::string command;
     while(1)
     {
-        
         std::cout << "enter the command" << std::endl;
-        getline(std::cin, x.command);
-        if(x.command == "ADD")
-            add(x);
-        else if(x.command == "SEARCH")
+        getline(std::cin, command);
+        if(command == "ADD")
+            phonebook.add_new_contact();
+        else if(command == "SEARCH")
             std::cout << "search the contact" << std::endl;
-        else if(x.command == "EXIT")
+        else if(command == "EXIT")
         {
             std::cout << "exit the programme" << std::endl;
-            exit(1);
+            break;
         }
         else
             std::cout << "Invalid command" << std::endl;
