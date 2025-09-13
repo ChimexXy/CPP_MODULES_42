@@ -124,7 +124,6 @@ void Phonebook::add_new_contact()
     ind = (ind + 1) % 8;
     if (count < 8)
         count++;
-    // std::cout << ind << std::endl;
 }
 
 std::string limit_column(std::string str)
