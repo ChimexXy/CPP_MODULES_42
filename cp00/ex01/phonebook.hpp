@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include <cctype>
+#include <cstdlib>
+#include <limits>
 
 class Contact{
 private:

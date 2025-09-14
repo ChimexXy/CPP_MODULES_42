@@ -1,7 +1,7 @@
 #include "phonebook.hpp"
 #include <iomanip>
 
-Phonebook::Phonebook() : ind(0), count(0) {} 
+Phonebook::Phonebook() : ind(0), count(0) {}
 
 std::string line_parser(std::string line)
 {
@@ -136,10 +136,10 @@ std::string limit_column(std::string str)
 
 void print_contacts(Contact contact, int index)
 {
-    std::cout << "|" << std::setw(10) << std::right << index 
-              << "|" << std::setw(10) << std::right << limit_column(contact.get_first_name())
-              << "|" << std::setw(10) << std::right << limit_column(contact.get_last_name())
-              << "|" << std::setw(10) << std::right << limit_column(contact.get_nick_name()) << "|" << std::endl;
+    std::cout << std::setw(10) << std::right << index 
+              << std::setw(10) << std::right << limit_column(contact.get_first_name())
+              << std::setw(10) << std::right << limit_column(contact.get_last_name())
+              << std::setw(10) << std::right << limit_column(contact.get_nick_name()) << "|" << std::endl;
 }
 
 
@@ -158,22 +158,20 @@ void Phonebook::search_contact()
 
     for(int i = 0; i < count; i++)
         print_contacts(contacts[i], i);
+    std::string input;
     int index;
     while(1)
     {
-        std::cout << "Entre The index of contact : ";
-        std::cin >> index;
-        if (index < 0 || index >= count)
+        std::cout << "Entre The index of contact : " << std::endl;
+        getline(std::cin, input);
+        index = std::stoi(input);
+        if (index < 0 || index >= 8)
         {
             std::cout << "Invalid Index, Try Again" << std::endl;
-            std::cin.ignore();
             continue;
         }
         else
-        {
-            std::cin.ignore();
             break;
-        }
     }
     Contact x_contact = contacts[index];
     std::cout << "First Name : " << x_contact.get_first_name() << std::endl; 
@@ -189,7 +187,7 @@ int main()
     std::string command;
     while(1)
     {
-        std::cout << "enter the command" << std::endl;
+        std::cout << "enter the command : (ADD) (SEARCH) (EXIT)" << std::endl;
         getline(std::cin, command);
         if(command == "ADD")
             phonebook.add_new_contact();
@@ -198,7 +196,7 @@ int main()
         else if(command == "EXIT")
         {
             std::cout << "exit the programme" << std::endl;
-            break;
+            exit (1);
         }
         else
             std::cout << "Invalid command" << std::endl;
