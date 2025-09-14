@@ -136,10 +136,10 @@ std::string limit_column(std::string str)
 
 void print_contacts(Contact contact, int index)
 {
-    std::cout << std::setw(10) << std::right << index 
-              << std::setw(10) << std::right << limit_column(contact.get_first_name())
-              << std::setw(10) << std::right << limit_column(contact.get_last_name())
-              << std::setw(10) << std::right << limit_column(contact.get_nick_name()) << "|" << std::endl;
+    std::cout << "|" << std::setw(10) << std::right << index 
+              << "|" << std::setw(10) << std::right << limit_column(contact.get_first_name())
+              << "|" << std::setw(10) << std::right << limit_column(contact.get_last_name())
+              << "|" << std::setw(10) << std::right << limit_column(contact.get_nick_name()) << "|" << std::endl;
 }
 
 
@@ -159,20 +159,22 @@ void Phonebook::search_contact()
     for(int i = 0; i < count; i++)
         print_contacts(contacts[i], i);
     std::string input;
-    int index;
+    int index = -1;
     while(1)
     {
         std::cout << "Entre The index of contact : " << std::endl;
         getline(std::cin, input);
-        index = std::stoi(input);
-        if (index < 0 || index >= 8)
+        index = std::atoi(input.c_str());
+
+        if (input.empty()|| input.length() > 1 || index < 0 || index >= count)
         {
-            std::cout << "Invalid Index, Try Again" << std::endl;
+            std::cout << "Invalid Index, Try Again :(" << std::endl;
             continue;
         }
         else
             break;
     }
+    std::cout << "------->>>>>" << index << std::endl;
     Contact x_contact = contacts[index];
     std::cout << "First Name : " << x_contact.get_first_name() << std::endl; 
     std::cout << "Last Name : " << x_contact.get_last_name() << std::endl; 
