@@ -42,7 +42,7 @@ void Phonebook::add_new_contact()
         line = line_parser(line);
         if (line.empty())
         {
-            std::cout << "TRy Again" << std::endl;
+            std::cout << "Try Again" << std::endl;
             continue;
         }
         else
@@ -59,7 +59,7 @@ void Phonebook::add_new_contact()
         line = line_parser(line);
         if (line.empty())
         {
-            std::cout << "TRy Again" << std::endl;
+            std::cout << "Try Again" << std::endl;
             continue;
         }
         else
@@ -76,7 +76,7 @@ void Phonebook::add_new_contact()
         line = line_parser(line);
         if (line.empty())
         {
-            std::cout << "TRy Again" << std::endl;
+            std::cout << "Try Again" << std::endl;
             continue;
         }
         else
@@ -93,7 +93,7 @@ void Phonebook::add_new_contact()
         line = line_parser(line);
         if (line.empty() || !all_digit(line))
         {
-            std::cout << "TRy Again" << std::endl;
+            std::cout << "Try Again" << std::endl;
             continue;
         }
         else
@@ -110,7 +110,7 @@ void Phonebook::add_new_contact()
         line = line_parser(line);
         if (line.empty())
         {
-            std::cout << "TRy Again" << std::endl;
+            std::cout << "Try Again" << std::endl;
             continue;
         }
         else
