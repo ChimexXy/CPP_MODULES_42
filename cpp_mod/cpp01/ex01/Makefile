@@ -1,16 +1,17 @@
 NAME = zombie
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-SRC = newZombie.cpp randomChump.cpp Zombie.cpp main.cpp
+SRC = main.cpp Zombie.cpp zombieHorde.cpp
 OBJS = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) Zombie.hpp
+$(NAME): $(OBJS) zombie.hpp
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
-clean: 
+clean:
 	rm -rf $(OBJS)
 fclean: clean
 	rm -rf $(NAME)
-re: fclean all
+
+re: fclean all	

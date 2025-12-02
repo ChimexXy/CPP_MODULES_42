@@ -2,9 +2,9 @@
 
 int main()
 {
-	Zombie* heapZombie = newZombie("Foo");
-	heapZombie->call();
-	delete heapZombie;
+	Zombie* heapCall = newZombie("Foo");
+	heapCall->call();
+	delete heapCall;
 
-	randomChump("Bar");
+	randomChump("chimex");
 }
