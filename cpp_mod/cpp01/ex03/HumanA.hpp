@@ -13,5 +13,4 @@ public:
     void attack() const;
 };
 
-
 #endif
