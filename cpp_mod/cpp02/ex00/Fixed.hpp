@@ -3,21 +3,20 @@
 
 #include <iostream>
 
-class Fixed{
+class Fixed
+{
 private:
-	int _rawbits;
-	static const int _frabits = 8;
+    int _value;
+    static const int _bits = 8;
 
 public:
-	Fixed();
-	Fixed(const Fixed &other);
-	Fixed& operator=(const Fixed &othre);
-	~Fixed();
+    Fixed();                    // default constructor
+    Fixed(const Fixed &other);  // copy constructor
+    Fixed &operator=(const Fixed &other); // assignment
+    ~Fixed();                   // destructor
 
-	int getRawBits( void ) const;
-	void setRawBits( int const raw );
-
+    int getRawBits(void) const;
+    void setRawBits(int const raw);
 };
-
 
 #endif
