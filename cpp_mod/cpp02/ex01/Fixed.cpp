@@ -1,5 +1,4 @@
 #include "Fixed.hpp"
-#include <cmath>
 
 Fixed::Fixed() : _value(0) {
     std::cout << "Default constructor called" << std::endl;
