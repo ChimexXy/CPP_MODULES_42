@@ -7,7 +7,7 @@ OBJS = $(SRC:.cpp=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) Fixed.hpp
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
