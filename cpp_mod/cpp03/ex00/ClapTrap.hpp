@@ -9,8 +9,6 @@ protected:
 	int _hp;
 	int _ep;
 	int _ad;
-
-
  
 public:
 	ClapTrap();
