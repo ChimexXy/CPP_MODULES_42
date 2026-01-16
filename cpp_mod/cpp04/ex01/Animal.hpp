@@ -11,8 +11,8 @@ protected:
 
 public:
     Animal();
-    Animal(const Animal& other);
-    Animal& operator=(const Animal& other);
+    Animal(const Animal& org);
+    Animal& operator=(const Animal& org);
     virtual ~Animal();
 
     std::string getType() const;
