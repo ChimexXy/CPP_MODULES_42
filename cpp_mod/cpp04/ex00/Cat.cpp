@@ -6,16 +6,16 @@ Cat::Cat()
     std::cout << "Cat constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& other) : Animal(other)
+Cat::Cat(const Cat& org) : Animal(org)
 {
     std::cout << "Cat copy constructor called" << std::endl;
 }
 
-Cat& Cat::operator=(const Cat& other)
+Cat& Cat::operator=(const Cat& org)
 {
 	std::cout << "Cat Copy assignment operator called" << std::endl;
-    if (this != &other)
-        Animal::operator=(other);
+    if (this != &org)
+        Animal::operator=(org);
     return *this;
 }
 

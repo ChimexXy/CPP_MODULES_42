@@ -6,17 +6,17 @@ Animal::Animal()
     std::cout << "Animal constructor called" << std::endl;
 }
 
-Animal::Animal(const Animal& other)
+Animal::Animal(const Animal& org)
 {
 	std::cout << "Animal Copy constructor called" << std::endl;
-    this->type = other.type;
+    this->type = org.type;
 }
 
-Animal& Animal::operator=(const Animal& other)
+Animal& Animal::operator=(const Animal& org)
 {
 	std::cout << "Animal Copy assignment operator called" << std::endl;
-    if (this != &other)
-        type = other.type;
+    if (this != &org)
+        type = org.type;
     return *this;
 }
 

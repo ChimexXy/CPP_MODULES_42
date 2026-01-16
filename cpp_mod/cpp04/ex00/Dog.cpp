@@ -6,16 +6,16 @@ Dog::Dog() : Animal()
     std::cout << "Dog constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog& other) : Animal(other)
+Dog::Dog(const Dog& org) : Animal(org)
 {
     std::cout << "Dog copy constructor called" << std::endl;
 }
 
-Dog& Dog::operator=(const Dog& other)
+Dog& Dog::operator=(const Dog& org)
 {
 	std::cout << "Dog Copy assignment operator called" << std::endl;
-    if (this != &other)
-        Animal::operator=(other);
+    if (this != &org)
+        Animal::operator=(org);
     return *this;
 }
 
