@@ -14,7 +14,6 @@ public:
 	~WrongAnimal();
 
 	void MakeSound() const;
-
 };
 
 #endif
