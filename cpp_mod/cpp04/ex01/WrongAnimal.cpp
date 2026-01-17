@@ -3,7 +3,7 @@
 WrongAnimal::WrongAnimal()
 {
 	type = "WrongAnimal";
-	std::cout << "WrongAnimal constractor called" << std::endl;
+	std::cout << "WrongAnimal constructor called" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal& org)
