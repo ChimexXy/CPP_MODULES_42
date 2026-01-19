@@ -4,28 +4,22 @@
 #include <string>
 #include <iostream>
 
-// Forward declaration (we'll use ICharacter later)
 class ICharacter;
 
 class AMateria {
 protected:
-    std::string _type;
+    std::string type;
 
 public:
-    // Orthodox Canonical Form
     AMateria();
-    AMateria(std::string const & type);
-    AMateria(const AMateria& other);
-    AMateria& operator=(const AMateria& other);
+    AMateria(const AMateria& org);
+    AMateria& operator=(const AMateria& org);
     virtual ~AMateria();
+
+    std::string const & getType() const;
     
-    // Getters
-    std::string const & getType() const;  // Returns the materia type
-    
-    // Pure virtual - makes this class abstract
     virtual AMateria* clone() const = 0;
     
-    // Virtual method with implementation
     virtual void use(ICharacter& target);
 };
 

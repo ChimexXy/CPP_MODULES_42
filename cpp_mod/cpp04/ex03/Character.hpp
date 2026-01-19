@@ -6,13 +6,12 @@
 
 class Character : public ICharacter {
 private:
-    std::string _name;
-    AMateria* _inventory[4];  // Fixed size: 4 slots
+    std::string Name;
+    AMateria* Inventory[4];
     
-    // For floor management (optional but recommended)
-    static const int _floorSize = 100;
-    AMateria* _floor[100];  // Dropped materias
-    int _floorCount;
+    static const int FloorSize = 100;
+    AMateria* Floor[100];
+    int FloorCount;
 
 public:
     Character();
@@ -21,7 +20,6 @@ public:
     Character& operator=(const Character& other);
     ~Character();
     
-    // Implement interface methods
     std::string const & getName() const;
     void equip(AMateria* m);
     void unequip(int idx);

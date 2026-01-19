@@ -1,36 +1,36 @@
 #include "AMateria.hpp"
 
-AMateria::AMateria() : _type("unknown") {
+AMateria::AMateria()
+{
+    type = "chimex";
     std::cout << "AMateria default constructor called" << std::endl;
 }
 
-AMateria::AMateria(std::string const & type) : _type(type) {
-    std::cout << "AMateria type constructor called" << std::endl;
-}
-
-AMateria::AMateria(const AMateria& other) : _type(other._type) {
+AMateria::AMateria(const AMateria& org) 
+{
     std::cout << "AMateria copy constructor called" << std::endl;
+    this->type = org.type;
 }
 
-AMateria& AMateria::operator=(const AMateria& other) {
-    std::cout << "AMateria assignment operator called" << std::endl;
-    if (this != &other) {
-        // Note: we typically DON'T copy _type in assignment for Materia
-        // The subject says the type should remain unchanged
-        // But we still need the operator for OCF
-    }
+AMateria& AMateria::operator=(const AMateria& org)
+{
+    std::cout << "AMateria Copy assignment operator called" << std::endl;
+    if (this != &org) {}
     return *this;
 }
 
-AMateria::~AMateria() {
+AMateria::~AMateria() 
+{
     std::cout << "AMateria destructor called" << std::endl;
 }
 
-std::string const & AMateria::getType() const {
-    return this->_type;
+std::string const & AMateria::getType() const
+{
+    return this->type;
 }
 
-void AMateria::use(ICharacter& target) {
-    (void)target;  // Suppress unused warning
+void AMateria::use(ICharacter& target)
+{
+    (void)target;
     std::cout << "* uses some materia *" << std::endl;
 }
