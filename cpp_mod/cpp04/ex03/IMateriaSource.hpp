@@ -4,7 +4,8 @@
 #include "AMateria.hpp"
 #include <string>
 
-class IMateriaSource {
+class IMateriaSource
+{
 public:
     virtual ~IMateriaSource() {}
     

@@ -7,14 +7,11 @@
 class Ice : public AMateria {
 public:
     Ice();
-    Ice(const Ice& other);
-    Ice& operator=(const Ice& other);
+    Ice(const Ice& org);
+    Ice& operator=(const Ice& org);
     ~Ice();
-    
-    // Override pure virtual
-    AMateria* clone() const;
-    
-    // Override use
+
+    AMateria* clone() const;    
     void use(ICharacter& target);
 };
 

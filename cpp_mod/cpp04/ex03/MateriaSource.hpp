@@ -3,9 +3,10 @@
 
 #include "IMateriaSource.hpp"
 
-class MateriaSource : public IMateriaSource {
+class MateriaSource : public IMateriaSource
+{
 private:
-    AMateria* _templates[4];  // Can learn up to 4 materia types
+    AMateria* _templates[4];
 
 public:
     MateriaSource();
