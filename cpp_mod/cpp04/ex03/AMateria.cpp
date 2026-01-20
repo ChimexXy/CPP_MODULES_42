@@ -6,6 +6,7 @@ AMateria::AMateria()
     std::cout << "AMateria default constructor called" << std::endl;
 }
 
+
 AMateria::AMateria(const AMateria& org) 
 {
     std::cout << "AMateria copy constructor called" << std::endl;

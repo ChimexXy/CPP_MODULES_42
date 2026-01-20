@@ -2,7 +2,7 @@
 
 Cure::Cure()
 {
-	type = "Cure";
+	type = "cure";
     std::cout << "Cure constructor called" << std::endl;
 }
 
