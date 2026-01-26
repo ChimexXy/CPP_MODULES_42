@@ -11,7 +11,12 @@ private:
 	static const int _lowset = 150;
 
 public:
+	Bureaucrat();
+	Bureaucrat(const Bureaucrat& org);
+	Bureaucrat& operator=(const Bureaucrat& org);
+	~Bureaucrat();
 
+	Bureaucrat(const std::string& name, int grade);
 };
 
 #endif
