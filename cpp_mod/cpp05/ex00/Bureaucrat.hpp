@@ -6,10 +6,8 @@
 
 class Bureaucrat{
 private:
-	std::string _name;
+	const std::string _name;
 	int _grade;
-	static const int _highset = 1;
-	static const int _lowset = 150;
 
 public:
 	Bureaucrat();
@@ -18,6 +16,12 @@ public:
 	~Bureaucrat();
 
 	Bureaucrat(const std::string& name, int grade);
+
+	const std::string& getName() const;
+	int getGrade() const;
+
+	void incrementGrade();
+	void decrementGrade();
 	
 	class GradeTooHighException : public std::exception{
 	public:

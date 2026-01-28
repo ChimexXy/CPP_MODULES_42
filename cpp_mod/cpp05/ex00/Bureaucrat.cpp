@@ -1,25 +1,25 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat()
+Bureaucrat::Bureaucrat() : _name("chimex")
 {
-	_name = "moad";
-	_grade = 42;
+	_grade = 37;
 	std::cout << "Default constractor called" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& org)
+Bureaucrat::Bureaucrat(const Bureaucrat& org) : _name(org._name)
 {
 	std::cout << "copy constractor called" << std::endl;
-	this->_name = org._name;
-	this->_grade = org._grade;
+	_grade = org._grade;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& org)
 {
 	std::cout << "assignment operator called" << std::endl;
+
 	if (this != &org)
-	_grade = org._grade;
-return *this;
+		_grade = org._grade;
+
+	return *this;
 }
 
 Bureaucrat::~Bureaucrat()
@@ -27,16 +27,46 @@ Bureaucrat::~Bureaucrat()
 	std::cout << "destractor called for " << _name << std::endl;
 }
 
-// Bureaucrat::Bureaucrat(const std::string& name, int grade)
-// {
-		// this->_name = org._name;
+Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name)
+{
+    if (grade < 1)
+        throw GradeTooHighException();
+    if (grade > 150)
+        throw GradeTooLowException();
 
-// 	    std::cout << "Bureaucrat constructor called for " << _name << std::endl;
-    
-//     if (grade < HIGHEST_GRADE)
-//         throw GradeTooHighException();
-//     if (grade > LOWEST_GRADE)
-//         throw GradeTooLowException();
-    
-//     _grade = grade;
-// }
+    _grade = grade;
+}
+
+const std::string& Bureaucrat::getName() const
+{
+	return _name;
+}
+
+int Bureaucrat::getGrade() const
+{
+	return _grade;
+}
+
+void Bureaucrat::incrementGrade()
+{
+	if (_grade - 1 < 1)
+		throw GradeTooHighException();
+	_grade--;
+}
+void Bureaucrat::decrementGrade()
+{
+	if (_grade + 1 > 150)
+		throw GradeTooLowException();
+	_grade++;
+}
+
+const char* Bureaucrat::GradeTooHighException::what() const throw() 
+{
+    return "Grade is too high! (Must be >= 1)";
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw()
+{
+    return "Grade is too low! (Must be <= 150)";
+}
+
