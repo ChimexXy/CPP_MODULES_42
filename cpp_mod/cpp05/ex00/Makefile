@@ -4,7 +4,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp Bureaucrat.cpp
 OBJ = $(SRC:.cpp=.o)
 
-all : NAME
+all : $(NAME)
 
 $(NAME) : $(OBJ) Bureaucrat.hpp
 	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)

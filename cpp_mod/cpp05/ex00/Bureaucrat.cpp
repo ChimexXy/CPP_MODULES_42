@@ -1,14 +1,14 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : _name("chimex")
+Bureaucrat::Bureaucrat() : _name("chimex"), _grade(37)
 {
-	_grade = 37;
-	std::cout << "Default constractor called" << std::endl;
+	// _grade = 37;
+	std::cout << "Default constructor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& org) : _name(org._name)
 {
-	std::cout << "copy constractor called" << std::endl;
+	std::cout << "copy constructor called" << std::endl;
 	_grade = org._grade;
 }
 
@@ -24,7 +24,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& org)
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "destractor called for " << _name << std::endl;
+	std::cout << "destructor called for " << _name << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name)
