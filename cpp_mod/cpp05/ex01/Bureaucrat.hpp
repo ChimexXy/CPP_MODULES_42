@@ -4,6 +4,7 @@
 #include <exception>
 #include <iostream>
 
+
 class Form;
 
 class Bureaucrat{

@@ -6,9 +6,8 @@ Form::Form() : _name("chimex"), _gradeSign(1), _gradeExecute(1)
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Form::Form(const Form& org) : _name(org._name), _gradeSign(org._gradeSign), _gradeExecute(org._gradeExecute)
+Form::Form(const Form& org) : _name(org._name), _gradeSign(org._gradeSign), _gradeExecute(org._gradeExecute), _sig(org._sig)
 {
-	_sig = org._sig;
 	std::cout << "copy constructor called" << std::endl;
 }
 

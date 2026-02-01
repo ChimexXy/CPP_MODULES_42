@@ -4,7 +4,9 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
 
-class Form : public Bureaucrat{
+class Bureaucrat;
+
+class Form {
 private:
 	const std::string _name;
 	const int _gradeSign;
