@@ -3,6 +3,7 @@
 
 #include <exception>
 #include <iostream>
+#include <string>
 
 
 class AForm;
