@@ -1,8 +1,6 @@
 #include "Bureaucrat.hpp"
+#include "Intern.hpp"
 #include "AForm.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardonForm.hpp"
 
 void separator(const std::string& title) {
     std::cout << "\n========================================" << std::endl;
@@ -10,164 +8,238 @@ void separator(const std::string& title) {
     std::cout << "========================================\n" << std::endl;
 }
 
-void test_shrubbery() {
-    separator("Test 1: Shrubbery Creation Form");
+void test_create_shrubbery() {
+    separator("Test 1: Create Shrubbery Form");
     try {
-        Bureaucrat bob("Bob", 1);
-        ShrubberyCreationForm form("home");
+        Intern intern;
+        AForm* form;
         
-        std::cout << form << std::endl;
-        bob.signForm(form);
-        bob.executeForm(form);
+        form = intern.makeForm("shrubbery creation", "garden");
         
+        if (form) {
+            std::cout << *form << std::endl;
+            
+            Bureaucrat bob("Bob", 1);
+            bob.signForm(*form);
+            bob.executeForm(*form);
+            
+            delete form;
+        }
     } catch (std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 }
 
-void test_robotomy() {
-    separator("Test 2: Robotomy Request Form");
+void test_create_robotomy() {
+    separator("Test 2: Create Robotomy Form");
     try {
-        Bureaucrat alice("Alice", 1);
-        RobotomyRequestForm form("Bender");
+        Intern intern;
+        AForm* form;
         
-        std::cout << form << std::endl;
-        alice.signForm(form);
-        alice.executeForm(form);
-        alice.executeForm(form);  // Try again for different result
+        form = intern.makeForm("robotomy request", "Bender");
         
+        if (form) {
+            std::cout << *form << std::endl;
+            
+            Bureaucrat alice("Alice", 1);
+            alice.signForm(*form);
+            alice.executeForm(*form);
+            
+            delete form;
+        }
     } catch (std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 }
 
-void test_presidential() {
-    separator("Test 3: Presidential Pardon Form");
+void test_create_presidential() {
+    separator("Test 3: Create Presidential Form");
     try {
-        Bureaucrat president("President", 1);
-        PresidentialPardonForm form("Arthur Dent");
+        Intern intern;
+        AForm* form;
         
-        std::cout << form << std::endl;
-        president.signForm(form);
-        president.executeForm(form);
+        form = intern.makeForm("presidential pardon", "Arthur Dent");
         
+        if (form) {
+            std::cout << *form << std::endl;
+            
+            Bureaucrat president("President", 1);
+            president.signForm(*form);
+            president.executeForm(*form);
+            
+            delete form;
+        }
     } catch (std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 }
 
-void test_unsigned_form() {
-    separator("Test 4: Execute Unsigned Form");
+void test_invalid_form() {
+    separator("Test 4: Invalid Form Name");
     try {
-        Bureaucrat bob("Bob", 1);
-        ShrubberyCreationForm form("garden");
+        Intern intern;
+        AForm* form;
         
-        std::cout << "Trying to execute unsigned form..." << std::endl;
-        bob.executeForm(form);  // Not signed!
+        form = intern.makeForm("invalid form", "target");
         
+        if (form) {
+            std::cout << "This should not happen!" << std::endl;
+            delete form;
+        } else {
+            std::cout << "Form creation failed as expected." << std::endl;
+        }
     } catch (std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 }
 
-void test_grade_too_low_execute() {
-    separator("Test 5: Grade Too Low to Execute");
+void test_subject_example() {
+    separator("Test 5: Subject Example");
     try {
-        Bureaucrat intern("Intern", 150);
-        Bureaucrat boss("Boss", 1);
-        ShrubberyCreationForm form("office");
+        Intern someRandomIntern;
+        AForm* rrf;
         
-        boss.signForm(form);  // Boss signs it
-        intern.executeForm(form);  // Intern tries to execute
+        rrf = someRandomIntern.makeForm("robotomy request", "Bender");
         
-    } catch (std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-}
-
-void test_grade_too_low_sign() {
-    separator("Test 6: Grade Too Low to Sign");
-    try {
-        Bureaucrat intern("Intern", 150);
-        PresidentialPardonForm form("Ford Prefect");
-        
-        intern.signForm(form);  // Too low to sign
-        
+        if (rrf) {
+            std::cout << *rrf << std::endl;
+            delete rrf;
+        }
     } catch (std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 }
 
 void test_all_forms() {
-    separator("Test 7: All Three Forms");
+    separator("Test 6: Create All Forms");
     try {
-        Bureaucrat supreme("Supreme Leader", 1);
+        Intern intern;
+        Bureaucrat god("God", 1);
         
-        ShrubberyCreationForm shrubbery("park");
-        RobotomyRequestForm robotomy("Wall-E");
-        PresidentialPardonForm pardon("Marvin");
+        std::string formNames[3] = {
+            "shrubbery creation",
+            "robotomy request",
+            "presidential pardon"
+        };
         
-        std::cout << "=== Shrubbery ===" << std::endl;
-        supreme.signForm(shrubbery);
-        supreme.executeForm(shrubbery);
+        std::string targets[3] = {
+            "home",
+            "Marvin",
+            "Zaphod"
+        };
         
-        std::cout << "\n=== Robotomy ===" << std::endl;
-        supreme.signForm(robotomy);
-        supreme.executeForm(robotomy);
+        for (int i = 0; i < 3; i++) {
+            std::cout << "\n--- Creating form " << i + 1 << " ---" << std::endl;
+            AForm* form = intern.makeForm(formNames[i], targets[i]);
+            
+            if (form) {
+                std::cout << *form << std::endl;
+                god.signForm(*form);
+                god.executeForm(*form);
+                delete form;
+            }
+        }
+    } catch (std::exception& e) {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
+}
+
+void test_multiple_interns() {
+    separator("Test 7: Multiple Interns");
+    try {
+        Intern intern1;
+        Intern intern2;
+        Intern intern3;
         
-        std::cout << "\n=== Presidential Pardon ===" << std::endl;
-        supreme.signForm(pardon);
-        supreme.executeForm(pardon);
+        AForm* form1 = intern1.makeForm("shrubbery creation", "park");
+        AForm* form2 = intern2.makeForm("robotomy request", "C-3PO");
+        AForm* form3 = intern3.makeForm("presidential pardon", "Ford");
         
+        Bureaucrat boss("Boss", 1);
+        
+        if (form1) {
+            boss.signForm(*form1);
+            boss.executeForm(*form1);
+            delete form1;
+        }
+        
+        if (form2) {
+            boss.signForm(*form2);
+            boss.executeForm(*form2);
+            delete form2;
+        }
+        
+        if (form3) {
+            boss.signForm(*form3);
+            boss.executeForm(*form3);
+            delete form3;
+        }
+    } catch (std::exception& e) {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
+}
+
+void test_case_sensitivity() {
+    separator("Test 8: Case Sensitivity");
+    try {
+        Intern intern;
+        
+        std::cout << "Trying 'Robotomy Request' (capital letters):" << std::endl;
+        AForm* form1 = intern.makeForm("Robotomy Request", "target");
+        if (!form1) {
+            std::cout << "Failed as expected (case sensitive)\n" << std::endl;
+        }
+        
+        std::cout << "Trying 'robotomy request' (lowercase):" << std::endl;
+        AForm* form2 = intern.makeForm("robotomy request", "target");
+        if (form2) {
+            std::cout << "Success!" << std::endl;
+            delete form2;
+        }
+    } catch (std::exception& e) {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
+}
+
+void test_memory_management() {
+    separator("Test 9: Memory Management");
+    try {
+        Intern* intern = new Intern();
+        AForm* form = intern->makeForm("presidential pardon", "Memory Test");
+        
+        if (form) {
+            std::cout << "Form created successfully" << std::endl;
+            std::cout << *form << std::endl;
+            delete form;
+        }
+        
+        delete intern;
+        std::cout << "No memory leaks!" << std::endl;
     } catch (std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
 }
 
 void test_polymorphism() {
-    separator("Test 8: Polymorphism with Base Pointer");
+    separator("Test 10: Polymorphism");
     try {
-        Bureaucrat god("God", 1);
+        Intern intern;
+        Bureaucrat supreme("Supreme", 1);
         
         AForm* forms[3];
-        forms[0] = new ShrubberyCreationForm("forest");
-        forms[1] = new RobotomyRequestForm("R2-D2");
-        forms[2] = new PresidentialPardonForm("Zaphod");
+        forms[0] = intern.makeForm("shrubbery creation", "forest");
+        forms[1] = intern.makeForm("robotomy request", "Bender");
+        forms[2] = intern.makeForm("presidential pardon", "Arthur");
         
         for (int i = 0; i < 3; i++) {
-            std::cout << *forms[i] << std::endl;
-            god.signForm(*forms[i]);
-            god.executeForm(*forms[i]);
-            std::cout << std::endl;
+            if (forms[i]) {
+                std::cout << "\nForm " << i + 1 << ":" << std::endl;
+                std::cout << *forms[i] << std::endl;
+                supreme.signForm(*forms[i]);
+                supreme.executeForm(*forms[i]);
+                delete forms[i];
+            }
         }
-        
-        for (int i = 0; i < 3; i++) {
-            delete forms[i];
-        }
-        
-    } catch (std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
-    }
-}
-
-void test_grade_boundaries() {
-    separator("Test 9: Grade Boundaries");
-    try {
-        // ShrubberyCreationForm: sign 145, exec 137
-        Bureaucrat exact("Exact", 137);
-        Bureaucrat tooLow("TooLow", 138);
-        
-        ShrubberyCreationForm form("boundary");
-        
-        Bureaucrat signer("Signer", 145);
-        signer.signForm(form);
-        
-        std::cout << "Exact grade (137) executing:" << std::endl;
-        exact.executeForm(form);
-        
-        std::cout << "\nToo low grade (138) executing:" << std::endl;
-        tooLow.executeForm(form);
-        
     } catch (std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
@@ -175,18 +247,19 @@ void test_grade_boundaries() {
 
 int main() {
     std::cout << "╔════════════════════════════════════════╗" << std::endl;
-    std::cout << "║    CPP05 - Ex02: Concrete Forms       ║" << std::endl;
+    std::cout << "║      CPP05 - Ex03: Intern Tests       ║" << std::endl;
     std::cout << "╚════════════════════════════════════════╝" << std::endl;
     
-    test_shrubbery();
-    test_robotomy();
-    test_presidential();
-    test_unsigned_form();
-    test_grade_too_low_execute();
-    test_grade_too_low_sign();
+    test_create_shrubbery();
+    test_create_robotomy();
+    test_create_presidential();
+    test_invalid_form();
+    test_subject_example();
     test_all_forms();
+    test_multiple_interns();
+    test_case_sensitivity();
+    test_memory_management();
     test_polymorphism();
-    test_grade_boundaries();
     
     std::cout << "\n╔════════════════════════════════════════╗" << std::endl;
     std::cout << "║         All Tests Complete!            ║" << std::endl;
