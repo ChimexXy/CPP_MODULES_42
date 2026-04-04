@@ -1,9 +1,7 @@
 #include "AForm.hpp"
-#include "Bureaucrat.hpp"
 
-AForm::AForm() : _name("chimex"), _gradeSign(1), _gradeExecute(1)
+AForm::AForm() : _name("Default"), _gradeSign(1), _gradeExecute(1), _sig(false)
 {
-	_sig = false;
 	std::cout << "Default constructor called" << std::endl;
 }
 
@@ -62,11 +60,6 @@ const char* AForm::GradeTooLowException::what() const throw()
     return "AForm Grade is too low! (Must be <= 150)";
 }
 
-const char* AForm::FormNotSignedException::what() const throw()
-{
-    return "Form is not signed!";
-}
-
 void AForm::beSign(const Bureaucrat& bureaucrat)
 {
     if (bureaucrat.getGrade() > _gradeSign) {
@@ -75,10 +68,10 @@ void AForm::beSign(const Bureaucrat& bureaucrat)
     _sig = true;
 }
 
-std::ostream& operator<<(std::ostream& os, const AForm& form) {
-    os << "AForm " << form.getName() 
-       << ", signed: " << (form.getSign() ? "yes" : "no")
-       << ", grade required to sign: " << form.getGradeSign()
-       << ", grade required to execute: " << form.getGradeExecute();
+std::ostream& operator<<(std::ostream& os, const AForm& Aform) {
+    os << "AForm " << Aform.getName() 
+       << ", signed: " << (Aform.getSign() ? "yes" : "no")
+       << ", grade required to sign: " << Aform.getGradeSign()
+       << ", grade required to execute: " << Aform.getGradeExecute();
     return os;
 }

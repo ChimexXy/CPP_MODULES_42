@@ -1,8 +1,7 @@
 #include "Form.hpp"
 
-Form::Form() : _name("chimex"), _gradeSign(1), _gradeExecute(1)
+Form::Form() : _name("Default"), _gradeSign(1), _gradeExecute(1), _sig(false)
 {
-	_sig = false;
 	std::cout << "Default constructor called" << std::endl;
 }
 

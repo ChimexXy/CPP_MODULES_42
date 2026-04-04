@@ -1,5 +1,5 @@
-#ifndef AFORM_HPP
-#define AFORM_HPP
+#ifndef FORM_HPP
+#define FORM_HPP
 
 #include "Bureaucrat.hpp"
 #include <iostream>
@@ -17,10 +17,10 @@ public:
 	AForm();
 	AForm(const AForm& org);
 	AForm& operator=(const AForm& org);
-	virtual ~AForm();
+	~AForm();
 
 	AForm(const std::string& name, int gToSig, int gToExec);
-	virtual void execute(Bureaucrat const & executor) const = 0;
+    virtual void execute(Bureaucrat const & executor) const = 0;
 
 	const std::string& getName() const;
 	bool getSign() const;
@@ -37,10 +37,6 @@ public:
 	public:
 		virtual const char* what() const throw();
 	};
-	class FormNotSignedException : public std::exception {
-    public:
-        virtual const char* what() const throw();
-    };
 
 };
 

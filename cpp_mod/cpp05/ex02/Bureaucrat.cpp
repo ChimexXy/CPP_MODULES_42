@@ -1,7 +1,7 @@
 #include "Bureaucrat.hpp"
-#include "AForm.hpp"
+#include "Form.hpp"
 
-Bureaucrat::Bureaucrat() : _name("chimex"), _grade(37)
+Bureaucrat::Bureaucrat() : _name("Default"), _grade(37)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
@@ -76,23 +76,15 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
     return os;
 }
 
-void Bureaucrat::signForm(AForm& form) 
+void Bureaucrat::signForm(Form& form) 
 {
-    try {
+    try
+    {
         form.beSign(*this);
         std::cout << _name << " signed " << form.getName() << std::endl;
-    } catch (AForm::GradeTooLowException& e) {
-        std::cout << _name << " couldn't sign " << form.getName() 
-                  << " because " << e.what() << std::endl;
     }
-}
-
-void Bureaucrat::executeForm(AForm const & form) {
-    try {
-        form.execute(*this);
-        std::cout << _name << " executed " << form.getName() << std::endl;
-    } catch (std::exception& e) {
-        std::cout << _name << " couldn't execute " << form.getName() 
-                  << " because " << e.what() << std::endl;
+    catch (Form::GradeTooLowException& e)
+    {
+        std::cout << _name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
     }
 }

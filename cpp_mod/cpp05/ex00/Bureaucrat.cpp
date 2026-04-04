@@ -1,8 +1,7 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : _name("chimex")
+Bureaucrat::Bureaucrat() : _name("Default"), _grade(37)
 {
-	_grade = 37;
 	std::cout << "Default constructor called" << std::endl;
 }
 
