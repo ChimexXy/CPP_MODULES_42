@@ -1,39 +1,52 @@
 #include "Bureaucrat.hpp"
-#include "AForm.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include <iostream>
 
-int main()
-{
-    try
-    {
-        Bureaucrat b1("Alice", 1);
-        Bureaucrat b2("Bob", 150);
-
-        ShrubberyCreationForm form1("home");
-        PresidentialPardonForm form2("Charlie");
-        RobotomyRequestForm form3("Dave");
-
-        std::cout << form1 << std::endl;
-        std::cout << form2 << std::endl;
-        std::cout << form3 << std::endl;
-
-        b1.signForm(form1);
-        b1.signForm(form2);
-        b1.signForm(form3);
-
-        b1.executeForm(form1);
-        b1.executeForm(form2);
-        b1.executeForm(form3);
-
-        b2.signForm(form1);
-        b2.executeForm(form1);
+int main() {
+    // Test 1: Shrubbery
+    try {
+        Bureaucrat bob("Bob", 1);
+        ShrubberyCreationForm form("home");
+        
+        bob.signForm(form);
+        bob.executeForm(form);
+    } catch (std::exception& e) {
+        std::cout << "Error: " << e.what() << std::endl;
     }
-    catch (const std::exception& e)
-    {
-        std::cerr << "Exception: " << e.what() << std::endl;
+    
+    // Test 2: Robotomy
+    try {
+        Bureaucrat alice("Alice", 1);
+        RobotomyRequestForm form("Bender");
+        
+        alice.signForm(form);
+        alice.executeForm(form);
+    } catch (std::exception& e) {
+        std::cout << "Error: " << e.what() << std::endl;
     }
-
+    
+    // Test 3: Presidential Pardon
+    try {
+        Bureaucrat president("President", 1);
+        PresidentialPardonForm form("Arthur");
+        
+        president.signForm(form);
+        president.executeForm(form);
+    } catch (std::exception& e) {
+        std::cout << "Error: " << e.what() << std::endl;
+    }
+    
+    // Test 4: Unsigned form (should fail)
+    try {
+        Bureaucrat intern("Intern", 150);
+        ShrubberyCreationForm form("garden");
+        
+        intern.executeForm(form);  // Not signed!
+    } catch (std::exception& e) {
+        std::cout << "Error: " << e.what() << std::endl;
+    }
+    
     return 0;
 }
