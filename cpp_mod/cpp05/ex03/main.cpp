@@ -1,39 +1,43 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
+#include <stdexcept>
 
-int main()
+static void safeDeleteForm(AForm* form)
 {
+    delete form;
+}
+
+static void processForm(Intern& intern, Bureaucrat& bureaucrat, const std::string& formName, const std::string& target)
+{
+    AForm* form = NULL;
+
     try
     {
-        Bureaucrat b1("Alice", 1);
-        Bureaucrat b2("Bob", 150);
-
-        ShrubberyCreationForm form1("home");
-        PresidentialPardonForm form2("Charlie");
-        RobotomyRequestForm form3("Dave");
-
-        std::cout << form1 << std::endl;
-        std::cout << form2 << std::endl;
-        std::cout << form3 << std::endl;
-
-        b1.signForm(form1);
-        b1.signForm(form2);
-        b1.signForm(form3);
-
-        b1.executeForm(form1);
-        b1.executeForm(form2);
-        b1.executeForm(form3);
-
-        b2.signForm(form1);
-        b2.executeForm(form1);
+        form = intern.makeForm(formName, target);
+        if (!form)
+            throw std::runtime_error("form creation failed");
+        bureaucrat.signForm(*form);
+        bureaucrat.executeForm(*form);
     }
     catch (const std::exception& e)
     {
-        std::cerr << "Exception: " << e.what() << std::endl;
+        std::cout << "Error while processing \"" << formName << "\": " << e.what() << std::endl;
     }
+    safeDeleteForm(form);
+    std::cout << std::endl;
+}
+
+int main()
+{
+    Bureaucrat b1("b1", 1); 
+    Bureaucrat b2("b2", 150);
+    Intern intern;
+
+    processForm(intern, b1, "shrubbery creation", "home");
+    processForm(intern, b2, "robotomy request", "bender");
+    processForm(intern, b1, "presidential pardon", "president");
+    processForm(intern, b1, "invalid form name", "target");
 
     return 0;
 }

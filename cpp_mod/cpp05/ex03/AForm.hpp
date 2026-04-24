@@ -17,7 +17,7 @@ public:
 	AForm();
 	AForm(const AForm& org);
 	AForm& operator=(const AForm& org);
-	~AForm();
+	virtual ~AForm();
 
 	AForm(const std::string& name, int gToSig, int gToExec);
     virtual void execute(Bureaucrat const & executor) const = 0;
