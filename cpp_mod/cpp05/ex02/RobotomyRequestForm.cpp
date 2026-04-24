@@ -1,16 +1,16 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotmyRequestForm::RobotmyRequestForm() : AForm("RobotomyRequestForm", 72, 45), _target("test")
+RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45), _target("test")
 {
 	std::cout << "Default constructor called" << std::endl;
 }
 
-RobotmyRequestForm::RobotmyRequestForm(const RobotmyRequestForm& org) : AForm(org), _target(org._target)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& org) : AForm(org), _target(org._target)
 {
 	std::cout << "copy constructor called" << std::endl;
 }
 
-RobotmyRequestForm& RobotmyRequestForm::operator=(const RobotmyRequestForm& org)
+RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& org)
 {
 	std::cout << "Assignment operator called" << std::endl;
 	if (this != &org)
@@ -21,17 +21,17 @@ RobotmyRequestForm& RobotmyRequestForm::operator=(const RobotmyRequestForm& org)
 	return (*this);
 }
 
-RobotmyRequestForm::RobotmyRequestForm(const std::string& target) : AForm("RobotomyRequestForm", 72, 45), _target(target)
+RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm("RobotomyRequestForm", 72, 45), _target(target)
 {
 	std::cout << "Parameterized constructor called" << std::endl;
 }
 
-RobotmyRequestForm::~RobotmyRequestForm()
+RobotomyRequestForm::~RobotomyRequestForm()
 {
 	std::cout << "Destructor called" << std::endl;
 }
 
-void RobotmyRequestForm::execute(const Bureaucrat& executor) const
+void RobotomyRequestForm::execute(const Bureaucrat& executor) const
 {
 	// if (!getSign())
 	// 	throw AForm::FormNotSignedException();

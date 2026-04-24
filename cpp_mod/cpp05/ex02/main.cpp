@@ -4,52 +4,35 @@
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
+int main()
+{
+    try
+    {
+        Bureaucrat b1("Alice", 1);
+        Bureaucrat b2("Bob", 150);
 
-int main() {
-    try {
+        ShrubberyCreationForm form1("home");
+        PresidentialPardonForm form2("Charlie");
+        RobotomyRequestForm form3("Dave");
 
-        Bureaucrat highRanker("Ma9La", 1);
-        Bureaucrat lowRanker("ChaNkaR", 140);
+        std::cout << form1 << std::endl;
+        std::cout << form2 << std::endl;
+        std::cout << form3 << std::endl;
 
-        ShrubberyCreationForm shrubbery("Home");
-        RobotomyRequestForm robotomy("Target");
-        PresidentialPardonForm pardon("Eve");
+        b1.signForm(form1);
+        b1.signForm(form2);
+        b1.signForm(form3);
 
-        std::cout << "\n--- ShrubberyCreationForm ---" << std::endl;
-        
-        std::cout << shrubbery << std::endl;
-        lowRanker.signForm(shrubbery);
-        lowRanker.executeForm(shrubbery);
-        highRanker.executeForm(shrubbery);
-        std::cout << shrubbery << std::endl;
+        b1.executeForm(form1);
+        b1.executeForm(form2);
+        b1.executeForm(form3);
 
-        std::cout << "\n--- RobotomyRequestForm ---\n";
-        std::cout << robotomy << std::endl;
-        highRanker.signForm(robotomy);
-        highRanker.executeForm(robotomy);
-        std::cout << robotomy << std::endl;
-
-        std::cout << "\n--- PresidentialPardonForm ---\n";
-        std::cout << pardon << std::endl;
-        highRanker.signForm(pardon);
-        highRanker.executeForm(pardon);
-        std::cout << pardon << std::endl;
-
-        std::cout << "\n--- Errors ---\n";
-        try {
-            lowRanker.signForm(pardon);
-        } catch (const std::exception& e) {
-            std::cerr << e.what() << std::endl;
-        }
-
-        try {
-            lowRanker.executeForm(pardon); 
-        } catch (const std::exception& e) {
-            std::cerr << e.what() << std::endl;
-        }
-
-    } catch (const std::exception& e) {
-        std::cout << e.what() << std::endl;
+        b2.signForm(form1);
+        b2.executeForm(form1);
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Exception: " << e.what() << std::endl;
     }
 
     return 0;

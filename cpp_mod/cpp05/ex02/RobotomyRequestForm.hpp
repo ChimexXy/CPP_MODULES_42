@@ -7,15 +7,15 @@
 #include <exception>
 #include <string>
 
-class RobotmyRequestForm : public AForm{
+class RobotomyRequestForm : public AForm{
 private:
 	std::string _target;
 public:
-	RobotmyRequestForm();
-	RobotmyRequestForm(const std::string& target);
-	RobotmyRequestForm(const RobotmyRequestForm& org);
-	RobotmyRequestForm& operator=(const RobotmyRequestForm& org);
-	~RobotmyRequestForm();
+	RobotomyRequestForm();
+	RobotomyRequestForm(const std::string& target);
+	RobotomyRequestForm(const RobotomyRequestForm& org);
+	RobotomyRequestForm& operator=(const RobotomyRequestForm& org);
+	~RobotomyRequestForm();
 
 	virtual void execute(const Bureaucrat& executor) const;
 } ;
