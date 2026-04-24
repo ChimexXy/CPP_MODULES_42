@@ -8,7 +8,7 @@ int main() {
     // Test 1: Shrubbery
     try {
         Bureaucrat bob("Bob", 1);
-        ShrubberyCreationForm form("home");
+        ShrubberyCreationForm form("chimex");
         
         bob.signForm(form);
         bob.executeForm(form);

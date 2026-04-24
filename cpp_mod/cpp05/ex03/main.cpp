@@ -7,7 +7,7 @@ int main() {
     // Test 1: Valid form
     {
         Intern intern;
-        AForm* form = intern.makeForm("shrubbery creation", "home");
+        AForm* form = intern.makeForm("shrubbery creation", "chimex");
         
         if (form) {
             Bureaucrat bob("Bob", 1);
