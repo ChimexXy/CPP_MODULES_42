@@ -124,8 +124,10 @@ void ScalarConverter::convertFromChar(const std::string &str)
     char c = str[0];
     std::cout << "char: '" << c << "'" << std::endl;
     std::cout << "int: " << static_cast<int>(c) << std::endl;
-    std::cout << "float: " << static_cast<float>(c) << "f" << std::endl;
-    std::cout << "double: " << static_cast<double>(c) << std::endl;
+    std::cout << "float: " << std::fixed << std::setprecision(1) 
+        << static_cast<float>(c) << "f" << std::endl;
+    std::cout << "double: " << std::fixed << std::setprecision(1) 
+        << static_cast<double>(c) << std::endl;
 }
 
 void ScalarConverter::convertFromInt(const std::string &str)
@@ -141,27 +143,27 @@ void ScalarConverter::convertFromInt(const std::string &str)
         return;
     }
     
-    int value = static_cast<int>(num);
+    int i = static_cast<int>(num);
     
     // Print char
-    if (value < 0 || value > 127) {
+    if (i < 0 || i > 127) {
         std::cout << "char: impossible" << std::endl;
-    } else if (value < 32 || value == 127) {
+    } else if (i < 32 || i == 127) {
         std::cout << "char: Non displayable" << std::endl;
     } else {
-        std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
+        std::cout << "char: '" << static_cast<char>(i) << "'" << std::endl;
     }
     
     // Print int
-    std::cout << "int: " << value << std::endl;
+    std::cout << "int: " << i << std::endl;
     
     // Print float
     std::cout << "float: " << std::fixed << std::setprecision(1) 
-              << static_cast<float>(value) << "f" << std::endl;
+              << static_cast<float>(i) << "f" << std::endl;
     
     // Print double
     std::cout << "double: " << std::fixed << std::setprecision(1) 
-              << static_cast<double>(value) << std::endl;
+              << static_cast<double>(i) << std::endl;
 }
 
 void ScalarConverter::convertFromFloat(const std::string &str)
@@ -188,7 +190,7 @@ void ScalarConverter::convertFromFloat(const std::string &str)
 
 void ScalarConverter::convertFromDouble(const std::string &str)
 {
-    double d = std::stod(str);
+    double d = atof(str.c_str());
 
     if (std::isnan(d) || std::isinf(d) 
         || d < 32 || d > 126)
