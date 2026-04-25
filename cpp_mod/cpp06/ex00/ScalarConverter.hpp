@@ -11,13 +11,8 @@
 
 class ScalarConverter {
 private:
-    // Private constructor - cannot be instantiated
-    ScalarConverter();
-    ScalarConverter(const ScalarConverter& other);
-    ScalarConverter& operator=(const ScalarConverter& other);
-    ~ScalarConverter();
-    
-    // Helper methods
+
+// Helper methods
     static bool isChar(const std::string& str);
     static bool isInt(const std::string& str);
     static bool isFloat(const std::string& str);
@@ -29,8 +24,14 @@ private:
     static void convertFromFloat(const std::string& str);
     static void convertFromDouble(const std::string& str);
     static void convertPseudoLiterals(const std::string& str);
-
-public:
+    
+    public:
+    // Private constructor - cannot be instantiated
+    ScalarConverter();
+    ScalarConverter(const ScalarConverter& other);
+    ScalarConverter& operator=(const ScalarConverter& other);
+    ~ScalarConverter();
+    
     // Public static method
     static void convert(const std::string& literal);
 };
