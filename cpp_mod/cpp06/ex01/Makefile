@@ -6,7 +6,7 @@ OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
-$(NAME) : $(OBJS) Serializer.hpp
+$(NAME) : $(OBJS) Serializer.hpp data.hpp
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
