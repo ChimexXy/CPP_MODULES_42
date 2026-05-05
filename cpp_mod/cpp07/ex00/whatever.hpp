@@ -1,25 +1,26 @@
 #ifndef WHATEVER_HPP
 # define WHATEVER_HPP
 
-template <typename tamp> void swap(tamp& a, tamp& b)
+template <typename T> 
+void swap(T& a, T& b)
 {
-	tamp c;
+	T c;
 
 	c = a;
 	a = b;
 	b = c;
 }
 
-template <typename tamp> tamp    min(tamp const& a, tamp const& b)
-{
+template <typename T> 
+T min(T const& a, T const& b) {
 	if (a < b)
 		return (a);
 	else
 		return (b);
 }
 
-template <typename tamp> tamp    max(tamp const& a, tamp const& b)
-{
+template <typename T>
+T max(T const& a, T const& b) {
 	if (a > b)
 		return (a);
 	else
