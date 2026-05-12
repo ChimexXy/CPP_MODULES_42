@@ -15,14 +15,14 @@ private:
 
 public:
     Span();
-    Span(unsigned int N);
-    // Span(Span& oth);
+    Span(const Span& other); // Copy constructor
+    Span& operator=(const Span& other); // Assignment operator
     ~Span();
 
-    void addNumber(long num);
+    Span(unsigned int N);
+    void addNumber(unsigned int num);
     int shortestSpan();   
     int longestSpan();
-
 
 };
 

@@ -2,16 +2,23 @@
 
 Span::Span() : N(0) {}
 Span::Span(unsigned int Nb){ N = Nb; }
-// Span::Span(Span& oth) { *this = oth; }
+Span::Span(const Span& other) : N(other.N), vec(other.vec) {}
+
+Span& Span::operator=(const Span& other)
+{
+    if (this != &other)
+    {
+        this->N = other.N;
+        this->vec = other.vec;
+    }
+    return *this;
+}
 Span::~Span() {}
 
-void Span::addNumber(long num)
+void Span::addNumber(unsigned int num)
 {
-    if (num >= INT_MAX || num <= INT_MIN)
-        throw std::runtime_error("Number is out of range for int type");
-    std::vector<int>::iterator it = std::find(vec.begin(), vec.end(), num);
-    if (vec.size() >= N || it != vec.end())
-        throw std::runtime_error("Span is full or number already exists");
+    if (vec.size() >= N)
+        throw std::runtime_error("Span is full");
     vec.push_back(num);
 }
 int Span::shortestSpan()
@@ -33,15 +40,14 @@ int Span::shortestSpan()
 
     return min;
 }
+
 int Span::longestSpan() 
 {
     if (vec.size() < 2)
         throw std::out_of_range("Not enough numbers to find a span");
 
-    std::vector<int> tmpVec = vec;
-    std::sort(tmpVec.begin(), tmpVec.end());
-    size_t i = tmpVec.size() - 1;
-    int max = tmpVec[i] - tmpVec[0];
+    int min = *std::min_element(vec.begin(), vec.end());
+    int max = *std::max_element(vec.begin(), vec.end());
 
-    return max;
+    return max - min;
 }

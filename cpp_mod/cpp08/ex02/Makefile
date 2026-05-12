@@ -6,7 +6,7 @@ OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)
 
-$(NAME) : $(OBJS) MutantStack.hpp MutantStack.tpp
+$(NAME) : $(OBJS) MutantStack.hpp
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean :
