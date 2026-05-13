@@ -15,16 +15,17 @@ Span& Span::operator=(const Span& other)
 }
 Span::~Span() {}
 
-void Span::addNumber(unsigned int num)
+void Span::addNumber(int num)
 {
     if (vec.size() >= N)
         throw std::runtime_error("Span is full");
     vec.push_back(num);
 }
+
 int Span::shortestSpan()
 {
     if (vec.size() < 2)
-        throw std::out_of_range("Not enough numbers to find a span");
+        throw std::runtime_error("Not enough numbers to find a span");
 
     std::vector<int> tmpVec = vec;
     std::sort(tmpVec.begin(), tmpVec.end());
@@ -44,7 +45,7 @@ int Span::shortestSpan()
 int Span::longestSpan() 
 {
     if (vec.size() < 2)
-        throw std::out_of_range("Not enough numbers to find a span");
+        throw std::runtime_error("Not enough numbers to find a span");
 
     int min = *std::min_element(vec.begin(), vec.end());
     int max = *std::max_element(vec.begin(), vec.end());

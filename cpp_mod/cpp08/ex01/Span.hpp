@@ -12,15 +12,22 @@ private:
     unsigned int N;
     std::vector<int> vec;
 
-
 public:
     Span();
-    Span(const Span& other); // Copy constructor
-    Span& operator=(const Span& other); // Assignment operator
+    Span(unsigned int N);
+    Span(const Span& other);
+    Span& operator=(const Span& other);
     ~Span();
 
-    Span(unsigned int N);
-    void addNumber(unsigned int num);
+    template <typename It>
+    void addRange(It begin, It end)
+    {
+        if (std::distance(begin, end) + vec.size() > N)
+            throw std::runtime_error("Adding this range would exceed the capacity of the Span");
+        vec.insert(vec.end(), begin, end);
+    }
+
+    void addNumber(int num);
     int shortestSpan();   
     int longestSpan();
 
