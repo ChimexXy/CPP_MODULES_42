@@ -4,7 +4,6 @@
 #include <iostream>
 #include <vector>
 #include <exception>
-#include <limits>
 
 class Span
 {
