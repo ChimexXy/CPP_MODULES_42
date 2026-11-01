@@ -27,4 +27,4 @@ public:
     double      getRateForDate(const std::string& date) const;
 };
 
-#endif
+#endif 
